@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Payroll Dashboard</title>
+    <link rel="stylesheet" href="/Style/employee_form.css">
+    <script src="/JS/employee_form.js"></script>
+   
+
+</head>
+<body>
+    <div>
+   <header>
+<div class="brand-logo">
+    <div>
+        <img  src="/Assets/payroll_logo.png" alt="logo">
+    </div>
+    <div>
+        <h1 id="empl1">EMPLOYEE </h1>
+        <h1 id="empl2">PAYROLL</h1>
+    </div>
+</div>
+   </header>
+ 
+</div>
+<div class="container">
+    <h2 class="heading">Employee payroll Form</h2>
+<div class="Empl-form">
+   <form action="/Pages/dashboard.html" class="empl-form" onsubmit="sub()" method="post">
+        <div class="form-main">
+            <div class="label">
+                <label for="fname">Name</label>
+                <label for="profie">Profile image</label>
+                <label for="gender">Gender</label>
+                <label for="department">Department</label>
+                <label for="salary">Salary</label>
+                <label for="start-Date">Start Date</label>
+                <label for="notes">Notes</label>
+          
+            </div>
+            <div class="input">
+                <div>
+                    <input  class="textbox" type="text" id="fname" name="fname">
+                </div>
+          
+                <div class="prof">
+                    <input type="radio" id="profile" value="1" name="prof"><img src="/Assets/men.png" alt="profie1">
+                    <input type="radio" id="profile" value="2" name="prof"><img src="/Assets/men.png" alt="profie2">
+                    <input type="radio" id="profile" value="3" name="prof"><img src="/Assets/men.png" alt="profie3">
+                    <input type="radio" id="profile" value="4" name="prof"><img src="/Assets/men.png" alt="profie4">
+                    
+                </div>
+                <div class="radio1">
+                    <input type="radio" id="male" name="male" >
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="Female" >
+                    <label for="female">Female</label>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="hr" name="HR" >
+                    <label for="hr">HR</label>
+                    <input type="checkbox" id="Sales" name="Sales" >
+                    <label for="Sales">Sales</label>
+                    <input type="checkbox" id="Finance" name="Finance" >
+                    <label for="Finance">Finance</label>
+                    <input type="checkbox" id="Engineer" name="Engineer" >
+                    <label for="Engineer">Engineer</label>
+                    <input type="checkbox" id="Others" name="Others" >
+                    <label for="Others">Others</label>
+                </div>
+        
+                <select id="salary" name="salary">
+                    <option value="">Select Salary</option>
+                    <option value="30000">30000</option>
+                    <option value="40000">40000</option>
+                    <option value="50000">50000</option>
+                    <option value="60000">60000</option>
+                </select>
+                <div class="date">
+                <label for="start"></label>
+                <select id="start" name="day">
+                    <option value="">Day</option>
+                        <option value="1">1</option>
+                            <option value="2">2</option> </select>
+                <label for="start1"></label>
+                <select id="start1" name="month">
+                        <option value="">Month</option>
+                            <option value="1">1</option>
+                                <option value="2">2</option>
+                </select>
+                <label for="start2"></label>
+                <select id="start2" name="year">
+                        <option value="">Year</option>
+                            <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                </select>
+                </div>
+                <div>
+                <textarea id="notes" name="notes"></textarea>
+                    </div>
+                </div>
+            </div>
+        <div class="submit">
+                <div>
+                <button type="button" id="cancelButton" class="cancel" onclick="cancel()">Cancel</button>
+                 </div>
+                <div>
+                  <button type="submit"  id="submit">submit</button>
+                    <button type="reset" id="reset">Reset</button>
+                </div> 
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+

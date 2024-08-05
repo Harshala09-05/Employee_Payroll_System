@@ -1,0 +1,111 @@
+table{
+    border-collapse: collapse;
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    width: 100%;
+    background: white;
+    border-radius: 1px;
+    
+}
+#icon{
+    width: 24px;
+    height: 24px;
+    margin-right: 40px;
+}
+#avtar{
+    width: 24px;
+    height: 24px;
+}
+body{
+    background: rgb(239, 243, 242);
+}
+thead{
+    background-color:rgb(5, 5, 64);
+}
+th,td{
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+th{
+    font-weight: bold;
+    color: white;
+    
+}
+*{
+    box-sizing: border-box;
+    margin: 0%;
+    padding: 0%;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 50px;
+    background:white;
+
+}
+.brand-logo{
+   padding-left: 150px;
+   display: flex;
+
+}
+.brand-logo h1{
+    font-size: 14px;
+    align-items: center;
+
+    
+}
+#empl1{
+    color:rgba(18, 116, 18, 0.833)
+}
+.brand-logo img{
+    width: 35px;
+  height: 30px;
+  margin-right: 5px;
+}
+main{
+    margin-top: -27px;
+}
+.Empl-table{
+    margin-top: 30px;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+.navigation{
+    width: 100vw;
+    padding: 0px 150px;
+    display: flex;
+    /* background: purple; */
+    height: 60px;
+    justify-content:space-between;
+    align-items: center;
+}
+.navigation button{
+    width: 150px;
+  height: 40px;
+  background-color: rgba(18, 116, 18, 0.833);
+  border-radius: 7px;
+  color: white;
+  font-size: medium;
+  
+}
+#search{
+    width: 15px;
+  height: 15px;
+  position: absolute;
+  right: 20%;
+  top: 28%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  margin-right: 10px;
+    
+}
+#text{
+  width: 40px;
+  height: 30px;
+  border-radius: 16px;
+  border-color: black;
+
+}

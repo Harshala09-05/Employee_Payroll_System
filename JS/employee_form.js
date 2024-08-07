@@ -192,47 +192,81 @@
 // })
 ////
 function sub() {
-  debugger
+
   // $("#submit").click(function (event) {
-    // event.preventDefault();
+  // event.preventDefault();
+   
+  // var profile = $(document).ready(function() {
+  //   $('input[name="prof"]:radio').click(function(){
+  //       if ($('input[name=prof]:checked').val() == "1") {
+  //           $("#img1").attr("src","/Assets/men.png");
+      
+  //       } else if ($('input[name=prof]:checked').val() == "2") {
+  //         $("#img2").attr("src","/Assets/men.png");
+      
+  //       }else if ($('input[name=prof]:checked').val() == "3") {
+  //         $("#img3").attr("src","/Assets/men.png");
+      
+  //       }else if ($('input[name=prof]:checked').val() == "4") {
+  //         $("#img4").attr("src","/Assets/men.png");
+      
+  //       }
+  //   });
+  // });
+  var profileElements = $('[name="prof"]');
+  var profile = profileElements.filter(':checked').val();
+  var fname = $('#fname').val();
+  var genderElements = $('[name="gender"]');
+  var gender = genderElements.filter(':checked').val();
 
-    var fname = $('#fname').val();
-    var genderElements = $('[name="gender"]');
-    var gender = genderElements.filter(':checked').val();
+    
 
-    var profileImageElements = $('[name="prof"]');
-    var profile = profileImageElements.filter(':checked').val();
+  var salary = $("#salary").val();
+  var day = $("#start").val();
+  var month = $("#star1").val();
+  var year = $("#start2").val();
 
-    var salary = $("#salary").val();
-    var day = $("#start").val();
-    var month = $("#star1").val();
-    var year = $("#start2").val();
+  var notes = $("#notes").val();
+  var departmentElements = $('[name="dep"]');
+  var departments = departmentElements.filter(':checked').map(function () {
+    return this.value;
+  }).get();
 
-    var notes = $("#notes").val();
-    var departmentElements = $('[name="dep"]');
-    var departments = departmentElements.filter(':checked').map(function () {
-      return this.value;
-    }).get();
+  var formData = {
+    fname: $("#fname").val(),
+    gender: gender,
+    profileImage: profile,
+    salary: salary,
+    startDate: {
+      day: $("#start").val(),
+      month: $("#start1").val(),
+      year: $("#start2").val()
+    },
+    notes: notes,
+    departments: departments
+  };
 
-    var formData = {
-      fname: $("#fname").val(),
-      gender: gender,
-      profileImage: profile,
-      salary: salary,
-      startDate: {
-        day: $("#start").val(),
-        month: $("#start1").val(),
-        year: $("#start2").val()
+  console.log(formData);
+
+  var formDataString = JSON.stringify(formData);
+  localStorage.setItem('FormData', formDataString);
+  var check = $("#submit").text();
+  if (check === "Submit") {
+    $.ajax({
+      url: "http://localhost:5500/employees",
+      type: "POST",
+      data: formDataString,
+      success: function (response) {
+        window.location.href = "./dashboard.html";
       },
-      notes: notes,
-      departments: departments
-    };
-
-    console.log(formData);
-
-    var formDataString = JSON.stringify(formData);
-    localStorage.setItem('FormData', formDataString);
-
+      error: function (xhr, status, error) {
+        console.error("An error occurred:", status, error);
+      },
+    });
+  } else {
+    var id = localStorage.getItem("key");
+    console.log(id);
+    
     $.ajax({
       url: 'http://localhost:5500/employees',
       type: 'POST',
@@ -247,7 +281,59 @@ function sub() {
         console.log("Server response:", xhr.responseText);
       }
     });
-  // });
+    // });
+  }
+
+
+
+
+ 
+
+  $(document).ready(function () {
+    var newdata = localStorage.getItem("updateData");
+    var data = JSON.parse(newdata);
+    if (data) {
+      console.log(data);
+      $("#fname").val(data.name);
+
+      $('[name="gender"]')
+        .filter('[value="' + data.gender + '"]')
+        .prop("checked", true);
+
+      $('[name="prof"]')
+        .filter('[value="' + data.profileImage + '"]')
+        .prop("checked", true);
+
+      $("#salary").val(data.salary);
+
+      $("#start").val(data.startDate.day);
+      $("#start1").val(data.startDate.month);
+      $("#start2").val(data.startDate.year);
+
+      $("#notes").val(data.notes);
+
+      data.departments.forEach(function (department) {
+        $('[name="dep"][value="' + department + '"]').prop("checked", true);
+      });
+
+      $("#submit").text("Update");
+      localStorage.removeItem("updateData");
+    }
+  });
+  $("#Reset").click(function () {
+    console.log("cleared")
+    $("#fname").val("");
+  
+    $('[name="gender"]').prop("checked", false);
+
+    $('[name="prof"]').prop("checked", false);
+  
+    $("#salary").val("");
+    $("#start").val("");
+    $("#start1").val("");
+    $("#start2").val("");
+    $("#notes").val("");
+  
+    $('[name="dep"]').prop("checked", false);
+  });
 }
-
-

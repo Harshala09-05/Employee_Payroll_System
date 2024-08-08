@@ -1,6 +1,7 @@
 function redirect() {
   window.location.href = "./employee_form.html";
 }
+
 function deleteEmployee(element) {
     const custIdValue = $(element).closest('tr').data('id'); 
     console.log(custIdValue);
@@ -16,20 +17,54 @@ function deleteEmployee(element) {
       .then(console.log("data deleted..."));
       $(element).closest('tr').remove(); 
 }
+debugger
+function update(element) {
+  const $row = $(element).closest('tr');
+  const custIdValue = $row.data('id');
+  console.log('Row:', $row);
+  console.log('Customer ID:', custIdValue);
+  
+  if (!custIdValue) {
+    console.error("No customer ID found");
+    return;
+  }
 
-function editEmployee(element) {
-    const custIdValue = $(element).closest('tr').find('.Id').val();
-  console.log(custIdValue);
   fetch(`http://localhost:5500/employees/${custIdValue}`)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then((data) => {
       if (data) {
         console.log(data);
+        $("#fname").val(data.name);
 
-        // Store data in local storage for use in employee_form.html
+        $('[name="gender"]')
+          .filter('[value="' + data.gender + '"]')
+          .prop("checked", true);
+
+        $('[name="prof"]')
+          .filter('[value="' + data.profileImage + '"]')
+          .prop("checked", true);
+
+        $("#salary").val(data.salary);
+
+        $("#start").val(data.startDate.day);
+        $("#start1").val(data.startDate.month);
+        $("#start2").val(data.startDate.year);
+
+        $("#notes").val(data.notes);
+
+        data.departments.forEach(function (department) {
+          $('[name="dep"][value="' + department + '"]').prop("checked", true);
+        });
+
+        $("#submit").text("Update");
+        localStorage.removeItem("updateData");
         localStorage.setItem("updateData", JSON.stringify(data));
 
-        // Redirect to employee_form.html
         redirect();
       }
     })
@@ -50,16 +85,19 @@ $(document).ready(function () {
           .join(" ");
 
         const newRow = `
-                    <tr>
-                    <td> ${profile}</td>
-                        <td> ${fname}</td>
-                        <td>${gender}</td>
-                        <td>${departmentList}</td>
-                        <td>${salary}</td>
-                        <td>${startDate.day} ${startDate.month} ${startDate.year}</td>
-                        <td>
-                            <span><img id="icon1" src="/Assets/bin.png" alt="bin" onclick="deleteEmployee(this)"></span>
-                            <img id="icon2" src="/Assets/pencil.png" alt="edit" onclick="editEmployee(this)">
+                    <tr id="newrow">
+                    <tr data-id="${employee.id}">
+                    
+                    <td id="name"> ${profile} ${fname}</td>
+                        
+                      
+                        <td id="gender">${gender}</td>
+                        <td id="dept">${departmentList}</td>
+                        <td id="sal">${salary}</td>
+                        <td id="date">${startDate.day} ${startDate.month} ${startDate.year}</td>
+                        <td id="action">
+                           <div> <span><img id="icon1" src="/Assets/bin.png" alt="bin" onclick="deleteEmployee(this)"></span>
+                            <img id="icon2" src="/Assets/pencil.png" alt="edit" onclick="update(this)"></div>
                         </td>
                     </tr>
                 `;

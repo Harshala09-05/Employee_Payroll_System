@@ -71,148 +71,25 @@
 //         event.preventDefault();
 //     }
 // });
-// $("#submit").click(function(){
-//   var Name = $('#fname').val();
-//   var ProfileImage = $('[name="prof"]');
-// var profile;
-// for (var i = 0; i < ProfileImage.length; i++) {
-//   if (ProfileImage[i].checked) {
-//     profile = ProfileImage[i].value;
-//     break;
-//   }
-// }
-// var genderElements = $('[name="gender"]');
-// var gender;
-// for (var i = 0; i < genderElements.length; i++) {
-//   if (genderElements[i].checked) {
-//     gender = genderElements[i].value;
-//     break;
-//   }
-// }
-// var departmentElements = $('[name="dep"]');
-// var departments = [];
-// for (var i = 0; i < departmentElements.length; i++) {
-//     if (departmentElements[i].checked) {
-//         departments.push(departmentElements[i].value);
-//     }
-//   }
-//    var profile=$(document).ready(function () {
-//     // When a profile image is clicked, mark the corresponding radio button as checked
-//     $(".profile-image").click(function () {
-//         var profileId = $(this).data("profile");
-//         $("input[name='prof'][value='" + profileId + "']").prop("checked", true);
-//     });
 
-//     // Reset button logic to uncheck all radio buttons
-//     $(".reset").click(function () {
-//         $("input[name='prof']").prop("checked", false);
-//     });
-//    });
-//   var gender = $(document).ready(function () {
-//     // Function to get and print selected gender
-//     function printSelectedGender() {
-//         // Get the value of the selected radio button with name 'gender'
-//         var selectedGender = $("input[name='gender']:checked").val();
-
-//         if (selectedGender) {
-//             console.log("Selected Gender:", selectedGender);
-//         } else {
-//             console.log("No gender selected");
-//         }
-//     }
-
-//     // Attach the function to the button click event
-//     $(".radio1").click(function () {
-//         printSelectedGender();
-//     });
-    
-//     // When "Female" button is clicked, set the female radio button
-//     $(".check-female").click(function () {
-//         $("#female").prop("checked", true);
-//     });
-    
-//     // When "Reset" button is clicked, uncheck both gender radio buttons
-//     $(".reset").click(function () {
-//         $("#male").prop("checked", false);
-//         $("#female").prop("checked", false);
-//     });
-//   });
-//   var departmentElements = $('[name="dept"]');
-//   var departments = [];
-//   for (var i = 0; i < departmentElements.length; i++) {
-//       if (departmentElements[i].checked) {
-//           departments.push(departmentElements[i].value);
-//       }
-//   }
-
-// var salary = $("#salary").val();
-// var day = $("#start").val();
-// var month = $("#start1").val();
-// var year = $("#start2").val();
-
-// var notes = $("#notes").val();
-
-
-// var formData = {
-//   fname: $("#fname").val(),
-//   profileImage:  profile,
-//   gender:  gender,
-//   departments: departmentElements.map(function () { return this.value; }).get(),
-//   salary:  salary,
-//   startDate: {
-//       day:  day,
-//     month: month,
-//       year: year
-//   },
-//   notes:  notes,
-  
-// };
-
-// console.log(formData);
-// console.log(profile)
-// var formDataString = JSON.stringify(formData);
-// localStorage.setItem(FormData,formDataString);
-
-
-
-// $.ajax({
-// url: 'http://localhost:5500/employees',
-// type: 'POST',
-// data: formDataString,
-// success: function(response) {
-//     alert("Form Data Submitted");
-//     window.location.href = 'D:\Frontend\Employee_Payroll_System\Pages\dashboard.html';
-// },
-// error: function(xhr, status, error) {
-//   console.error('An error occurred:', status, error);
-//   console.log("Server response:", xhr.responseText);
-// }
-// });
-
-// })
-////
 function sub() {
 
   // $("#submit").click(function (event) {
   // event.preventDefault();
    
-  // var profile = $(document).ready(function() {
-  //   $('input[name="prof"]:radio').click(function(){
-  //       if ($('input[name=prof]:checked').val() == "1") {
-  //           $("#img1").attr("src","/Assets/men.png");
-      
-  //       } else if ($('input[name=prof]:checked').val() == "2") {
-  //         $("#img2").attr("src","/Assets/men.png");
-      
-  //       }else if ($('input[name=prof]:checked').val() == "3") {
-  //         $("#img3").attr("src","/Assets/men.png");
-      
-  //       }else if ($('input[name=prof]:checked').val() == "4") {
-  //         $("#img4").attr("src","/Assets/men.png");
-      
-  //       }
-  //   });
-  // });
+  // var profileImageElements = $('[name="prof"]');
+  // var profile;
+  // for (var i = 0; i < profileImageElements.length; i++) {
+  //   if (profileImageElements[i].checked) {
+  //     profile = profileImageElements[i].value;
+  //     break;
+  //   }
+  // }
+  // if (!profile) {
+  //   alert("Please select a profile image.");
+  //   return;
+  // }
+
   var profileElements = $('[name="prof"]');
   var profile = profileElements.filter(':checked').val();
   var fname = $('#fname').val();
@@ -335,5 +212,12 @@ function sub() {
     $("#notes").val("");
   
     $('[name="dep"]').prop("checked", false);
+  });
+}
+function cancel() {
+  $('#cancelButton').on('click', function () {
+    if (confirm('Are you sure you want to cancel?')) {
+      $('#Empl-form')[0].reset();
+    }
   });
 }

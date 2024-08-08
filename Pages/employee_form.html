@@ -7,6 +7,7 @@
     <title>Employee Payroll Dashboard</title>
     <link rel="stylesheet" href="/Style/employee_form.css">
     <script src="/JS/employee_form.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    
 
 </head>
@@ -46,28 +47,31 @@
                 </div>
           
                 <div class="prof">
-                    <input type="radio" id="profile" value="1" name="prof"><img src="/Assets/men.png" alt="profie1">
-                    <input type="radio" id="profile" value="2" name="prof"><img src="/Assets/men.png" alt="profie2">
-                    <input type="radio" id="profile" value="3" name="prof"><img src="/Assets/men.png" alt="profie3">
-                    <input type="radio" id="profile" value="4" name="prof"><img src="/Assets/men.png" alt="profie4">
+                    <input type="radio" id="profile" value="/Assets/men.png" name="prof"><img id="img1" src="/Assets/men.png" alt="profie1">
+                    <input type="radio" id="profile" value="/Assets/men.png" name="prof"><img id="img2" src="/Assets/men.png" alt="profie2">
+                    <input type="radio" id="profile" value="/Assets/men.png" name="prof"><img id="img3" src="/Assets/men.png" alt="profie3">
+                    <input type="radio" id="profile" value="/Assets/men.png" name="prof"><img id="img4" src="/Assets/men.png" alt="profie4">
                     
                 </div>
+                <div id="imageContainer">
+                    <img id="displayedImage" src="" alt="Selected Image" style="display: none;">
+                </div>
                 <div class="radio1">
-                    <input type="radio" id="male" name="male" >
+                    <input type="radio" id="male" name="gender" value="Male" >
                     <label for="male">Male</label>
-                    <input type="radio" id="female" name="Female" >
+                    <input type="radio" id="female" name="gender" value="Female">
                     <label for="female">Female</label>
                 </div>
                 <div class="checkbox">
-                    <input type="checkbox" id="hr" name="HR" >
+                    <input type="checkbox" id="hr" name="dep" value="HR" >
                     <label for="hr">HR</label>
-                    <input type="checkbox" id="Sales" name="Sales" >
+                    <input type="checkbox" id="Sales" name="dep" value="Sales" >
                     <label for="Sales">Sales</label>
-                    <input type="checkbox" id="Finance" name="Finance" >
+                    <input type="checkbox" id="Finance" name="dep" value="Finance">
                     <label for="Finance">Finance</label>
-                    <input type="checkbox" id="Engineer" name="Engineer" >
+                    <input type="checkbox" id="Engineer" name="dep" value="Engineer">
                     <label for="Engineer">Engineer</label>
-                    <input type="checkbox" id="Others" name="Others" >
+                    <input type="checkbox" id="Others" name="dep" value="Others">
                     <label for="Others">Others</label>
                 </div>
         
@@ -87,8 +91,8 @@
                 <label for="start1"></label>
                 <select id="start1" name="month">
                         <option value="">Month</option>
-                            <option value="1">1</option>
-                                <option value="2">2</option>
+                            <option value="Jan">Jan</option>
+                                <option value="Feb">Feb</option>
                 </select>
                 <label for="start2"></label>
                 <select id="start2" name="year">
@@ -104,7 +108,7 @@
             </div>
         <div class="submit">
                 <div>
-                <button type="button" id="cancelButton" class="cancel" onclick="cancel()">Cancel</button>
+                <button type="button" id="cancelButton" class="cancel" click="cancel()">Cancel</button>
                  </div>
                 <div>
                   <button type="submit"  id="submit">submit</button>
@@ -116,4 +120,3 @@
 
 </body>
 </html>
-
